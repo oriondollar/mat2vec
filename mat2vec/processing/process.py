@@ -186,14 +186,7 @@ class MaterialsTextProcessor:
                 continue
             elif convert_num and self.is_number(tok):  # Number.
                 # Replace all numbers with <nUm>, except if it is a crystal direction (e.g. "(111)").
-                try:
-                    if tokens[i - 1] == "(" and tokens[i + 1] == ")" \
-                            or tokens[i - 1] == "〈" and tokens[i + 1] == "〉":
-                        pass
-                    else:
-                        tok = "<nUm>"
-                except IndexError:
-                    tok = "<nUm>"
+                tok = "<nUm>"
             elif tok in self.ELEMENTS_NAMES_UL:  # Chemical element name.
                 # Add as a material mention.
                 mat_list.append((tok, self.elem_name_dict[tok.lower()]))
